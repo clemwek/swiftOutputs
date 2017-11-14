@@ -57,3 +57,33 @@ let reducedDictionary = myArray
 
 print(reducedDictionary)
 
+
+
+//: ### Output 3:
+//: a dictionary program with at least three functions that allow the user to look-up values in a dictionary and return them in human-readable form, and then traverse the dictionary to print out each value in each set.
+//: Use a Swift playground as your tools. Use a trailing closure in your code when you are traversing the dictionary such that the closure is called once for each key and value within the associated sets.
+
+let someDict = [
+    "n": "north",
+    "s": "south",
+    "w": "west",
+    "e": "east"
+]
+
+func dict (_ LookUp: String) {
+    if let result = someDict[LookUp]{
+        print("You are searching for \(LookUp) which is for \(result) direction.")
+    } else {
+        print("You are search for \(LookUp) was not found.")
+    }
+}
+
+func dict () {
+    for (initial, direction) in someDict {
+        print("Initial: \(initial) - Direction: \(direction)")
+    }
+}
+
+dict()
+
+someDict.map { print("Key \($0.key) with value \($0.value)") }
