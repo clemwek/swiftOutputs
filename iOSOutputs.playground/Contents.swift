@@ -87,3 +87,27 @@ func dict () {
 dict()
 
 someDict.map { print("Key \($0.key) with value \($0.value)") }
+
+
+//: ### Output 4:
+//: a Swift program that uses an enumeration, a mutable structure, and an immutable structure.
+
+enum EmployeeType: String {
+    case manager = "Manager"
+    case supervisor = "Supervisor"
+    case staff = "Staff"
+}
+
+struct Person {
+    let name: String
+    let DoB: String
+    var title: EmployeeType
+}
+
+var newEmployee = Person(name: "kayeli", DoB: "20/10/1990" , title: .staff)
+print(newEmployee.title)
+
+// Promotion
+newEmployee.title = .manager
+
+print(newEmployee.title)
