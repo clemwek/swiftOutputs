@@ -111,3 +111,99 @@ print(newEmployee.title)
 newEmployee.title = .manager
 
 print(newEmployee.title)
+
+
+//: ### Output 5:
+//: Write a that uses at least 3 classes:
+//: 1. A class with at least 3 stored properties, at least 2 computed properties, at least 2 methods, and at least 1 custom initializer.
+//: 2. A class that inherits from the first class and overrides at least 1 method, 1 property, and 1 initializer.
+//: 3. A   class   with   both   a   failable   initializer   and   a   deinitializer.
+
+enum Permisions {
+    case admin
+    case editor
+    case user
+}
+
+class User {
+    var firstName: String
+    var lastName: String
+    var age: Int
+    var permision: Permisions = .user
+    var fullName: String {
+        get {
+            return "\(self.firstName) \(self.lastName)"
+        }
+    }
+    var accessLevel: String {
+        if self.age < 18 {
+            return "Read Only"
+        } else {
+            return "Read and Write"
+        }
+    }
+    init (firstName: String, lastName: String, age: Int) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.age = age
+        
+    }
+    func changeName (firstName: String, lastName: String) {
+        self.firstName = firstName
+        self.lastName = lastName
+    }
+    func canUpdateProfile () {
+        print("can not update profile")
+    }
+}
+
+class Editor: User {
+    override var permision: Permisions {
+        get {
+            return .editor
+        }
+        set{
+            
+        }
+    }
+    
+    override func canUpdateProfile() {
+        print("can update some profile")
+    }
+}
+
+let editor = Editor(firstName: "firstName", lastName: "lastName", age: 10)
+editor.permision = .admin
+print("new position", editor.permision)
+
+class Admin: User {
+    override var permision: Permisions {
+        get {
+            return .admin
+        }
+        set{
+            
+        }
+    }
+    var accessToken: String
+    override init ( firstName: String, lastName: String, age: Int ) {
+        self.accessToken = "accessToken"
+        super.init(firstName: firstName, lastName: lastName, age: age )
+    }
+    
+    //    convenience override init? (firstName: String, lastName: String, age: Int, accessToken: String ) {
+    //
+    //        if accessToken.isEmpty {
+    //            return nill
+    //        }
+    //    }
+    
+    override func canUpdateProfile() {
+        print("can update all profiles")
+    }
+}
+
+let test = Admin(firstName: "john", lastName: "Doe", age: 56)
+
+test.accessToken
+
